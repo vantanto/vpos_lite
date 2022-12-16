@@ -2,66 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
-     */
-    public function edit(Request $request)
+    public function index(Request $request)
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $user = Auth::user();
+        return view('profile.index', compact('user'));
     }
 
-    /**
-     * Update the user's profile information.
-     *
-     * @param  \App\Http\Requests\ProfileUpdateRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function update(ProfileUpdateRequest $request)
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required',
+            'avatar' => 'nullable|mimes:jpeg,jpg,png|max:2048',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status' => 'validator', 'msg' => $validator->messages()], 400);
         }
 
-        $request->user()->save();
+        $user = Auth::user();
+        $user->name = $request->name;
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar) Storage::delete($user->avatar);
+            $file = $request->avatar;
+            $filename = time() . $user->id . '.' . $file->extension();
+            $user->avatar = 'avatar/' . $filename;
 
-    /**
-     * Delete the user's account.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function destroy(Request $request)
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
+            Storage::disk('public')->put($user->avatar, file_get_contents($file));
+        }
 
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        $user->save();
+        return response()->json(['status' => 'success', 'msg' => 'User Successfully Updated'], 200);
     }
 }

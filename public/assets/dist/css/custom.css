@@ -1,0 +1,28 @@
+
+
+label.required:after {
+	content:" * ";
+	color:#e83e8c;
+}
+
+.image-preview {
+	position: relative;
+	display: inline-block;
+}
+
+.image-preview .close {
+	position: absolute;
+	top: 0;
+	right: 5px;
+}
+
+tbody.tbody-rowspan:hover {
+	background-color: rgba(0,0,0,.075);
+}
+
+tbody.tbody-rowspan:hover tr,
+tbody.tbody-rowspan:hover th,
+tbody.tbody-rowspan:hover td {
+	background-color: transparent;
+	border-color: rgba(0,0,0,.075);
+}
