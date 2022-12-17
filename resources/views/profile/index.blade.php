@@ -73,7 +73,6 @@
 </section>
 @endsection
 @section('script')
-<script src="{{ asset('assets/dist/js/submitForm.js') }}"></script>
 <script>mainFormSubmit();</script>
 <script>
 $(document).ready(function(){

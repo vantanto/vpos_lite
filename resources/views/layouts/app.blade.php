@@ -55,6 +55,25 @@
 
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>    
     <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/dist/js/submitForm.js') }}"></script>
+
+    <script type="text/javascript">
+        // Success Message
+        @if(session('success'))
+        iziToast.success({
+            title: 'Success',
+            message: "<?php echo session('success'); ?>",
+        });
+        @endif
+        // Errors Message
+        @if(session('error'))
+        iziToast.error({
+            title: 'Error',
+            message: "<?php echo session('error'); ?>",
+        });
+        @endif
+    </script>
+
     @yield('script')
 </body>
 
