@@ -10,6 +10,8 @@ class Customer extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public static $default = 'Walk-in Customer';
+
     protected $fillable = [
         'name', 'phone', 'address', 'description',
     ];

@@ -43,7 +43,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="sell_price" class="required">Sell Price</label>
                                     <input type="text" id="sell_price" name="sell_price" class="form-control" placeholder="Enter product sell price" 
-                                        required data-type="thousand" inputmode="numeric">
+                                        required data-type="thousand">
                                     <span class="invalid-feedback"></span>
                                 </div>
                                 <div class="form-group col-md-6">
@@ -82,7 +82,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="discount">Discount</label>
                                             <input type="text" id="discount" name="discount" class="form-control" placeholder="Discount"
-                                                data-type="thousand" inputmode="numeric">
+                                                data-type="thousand">
                                             <span class="invalid-feedback"></span>
                                         </div>
                                         <div class="form-group col-md-12">
@@ -187,12 +187,12 @@
                 </td>
                 <td>
                     <input type="text" id="un_qty_`+unit_idx+`" name="un_qty_`+unit_idx+`" class="form-control un_qty" placeholder="Quantity"
-                        data-idx="`+unit_idx+`" data-type="thousand" data-decimal="0" inputmode="numeric">
+                        data-idx="`+unit_idx+`" data-type="thousand" data-decimal="0">
                     <span class="invalid-feedback"></span>
                 </td>
                 <td>
                     <input type="text" id="un_price_`+unit_idx+`" name="un_price_`+unit_idx+`" class="form-control un_price" placeholder="Price"
-                        data-idx="`+unit_idx+`" data-type="thousand" inputmode="numeric">
+                        data-idx="`+unit_idx+`" data-type="thousand">
                     <span class="invalid-feedback"></span>
                 </td>
                 <td>

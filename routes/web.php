@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,24 @@ Route::middleware('auth')->group(function () {
             ->name('customers.update');
         Route::post('/destroy/{id}', [CustomerController::class, 'destroy'])
             ->name('customers.destroy');
+    });
+
+    Route::group(['prefix' => 'orders'], function() {
+        Route::get('/index', [OrderController::class, 'index'])
+            ->name('orders.index');
+        Route::get('/create', [OrderController::class, 'create'])
+            ->name('orders.create');
+        Route::post('/store', [OrderController::class, 'store'])
+            ->name('orders.store');
+        Route::get('/show/{id}', [OrderController::class, 'show'])
+            ->name('orders.show');
+        Route::post('/destroy/{id}', [OrderController::class, 'destroy'])
+            ->name('orders.destroy');
+    });
+
+    Route::group(['prefix' => 'receipts'], function() {
+        Route::get('/show/{code}', [OrderController::class, 'receipt'])
+            ->name('receipts.show');
     });
 
     Route::group(['prefix' => 'products'], function() {

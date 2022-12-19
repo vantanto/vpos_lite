@@ -21,5 +21,9 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'email' => 'admin@example.com',
         ]);
+
+        $this->call([
+            SettingsSeeder::class,
+        ]);
     }
 }

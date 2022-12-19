@@ -29,6 +29,31 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li class="nav-item @if(Request::routeIs('orders.*')) menu-open @endif">
+                    <a href="#" class="nav-link @if(Request::routeIs('orders.*')) active @endif">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Order
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('orders.index') }}" 
+                                class="nav-link">
+                                <i class="{{ Request::routeIs('orders.index') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <p>Order List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('orders.create') }}" 
+                                class="nav-link">
+                                <i class="{{ Request::routeIs('orders.create') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <p>Add Order</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 @php $routeIs_MasterData = Request::routeIs('categories.*') || Request::routeIs('customers.*') || Request::routeIs('products.*'); @endphp
                 <li class="nav-item @if($routeIs_MasterData) menu-open @endif">
                     <a href="#" class="nav-link @if($routeIs_MasterData) active @endif">

@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="{{ asset("assets/dist/css/adminlte.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/dist/css/custom.css") }}">
+    @stack('styles')
     @yield('style')
 </head>
 
@@ -33,6 +34,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         @yield('header')
+                    </div>
+                    <div id="alert_error" class="callout callout-danger mb-2" style="display: none;">
+                        <button type="button" class="close" onclick="$('#alert_error').hide()">×</button>
+                        <h5 id="alert_error_title" class="text-danger">Input Error!</h5>
+                        <div id="alert_error_msg"></div>
+                        <ul id="alert_error_list" class="pl-3 mb-0"></ul>
                     </div>
                 </div>
             </section>
@@ -73,7 +80,11 @@
         });
         @endif
     </script>
+    <script>
+        $.fn.select2.defaults.set("theme", "bootstrap4");
+    </script>
 
+    @method('scripts')
     @yield('script')
 </body>
 
