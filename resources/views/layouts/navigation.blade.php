@@ -54,7 +54,9 @@
                         </li>
                     </ul>
                 </li>
-                @php $routeIs_MasterData = Request::routeIs('categories.*') || Request::routeIs('customers.*') || Request::routeIs('products.*'); @endphp
+                @php $routeIs_MasterData = Request::routeIs('categories.*') || Request::routeIs('customers.*') || Request::routeIs('products.*')
+                    || Request::routeIs('suppliers.*'); 
+                @endphp
                 <li class="nav-item @if($routeIs_MasterData) menu-open @endif">
                     <a href="#" class="nav-link @if($routeIs_MasterData) active @endif">
                         <i class="nav-icon fas fa-th-list"></i>
@@ -85,7 +87,21 @@
                                 <p>Product</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('suppliers.index') }}" 
+                                class="nav-link">
+                                <i class="{{ Request::routeIs('suppliers.*') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <p>Supplier</p>
+                            </a>
+                        </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('settings.index') }}" 
+                        class="nav-link @if(Request::routeIs('settings.*')) active @endif">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>Setting</p>
+                    </a>
                 </li>
             </ul>
         </nav>

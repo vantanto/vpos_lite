@@ -5,7 +5,7 @@
 </div>
 <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
-        <li class="breadcrumb-item active">Master Data</li>
+        <li class="breadcrumb-item"><a href="#">Master Data</a></li>
         <li class="breadcrumb-item active">Customer</li>
     </ol>
 </div>
@@ -55,6 +55,5 @@
 </section>
 @endsection
 @section('script')
-<script src="{{ asset('assets/js/submitForm.js') }}"></script>
 <script>mainFormSubmit();</script>
 @endsection

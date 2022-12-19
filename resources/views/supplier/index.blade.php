@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('header')
 <div class="col-sm-6">
-    <h1>Customer List</h1>
+    <h1>Supplier List</h1>
 </div>
 <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="#">Master Data</a></li>
-        <li class="breadcrumb-item active">Customer</li>
+        <li class="breadcrumb-item active">Supplier</li>
     </ol>
 </div>
 @endsection
@@ -35,9 +35,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header d-flex">
-                        <h3 class="card-title">Customer List</h3>
+                        <h3 class="card-title">Supplier List</h3>
                         <div class="ml-auto">
-                            <a href="{{ route('customers.create') }}" class="btn bg-purple">Add Customer</a>    
+                            <a href="{{ route('suppliers.create') }}" class="btn bg-purple">Add Supplier</a>    
                         </div>
                     </div>
                     <div class="card-body">
@@ -53,18 +53,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($customers as $customer)
+                                @foreach ($suppliers as $supplier)
                                 <tr>
-                                    <td>{{ $loop->iteration + $customers->firstItem() - 1 }}.</td>
-                                    <td>{{ $customer->name }}</td>
-                                    <td>{{ $customer->phone }}</td>
-                                    <td>{{ $customer->address }}</td>
-                                    <td>{{ $customer->description }}</td>
+                                    <td>{{ $loop->iteration + $suppliers->firstItem() - 1 }}.</td>
+                                    <td>{{ $supplier->name }}</td>
+                                    <td>{{ $supplier->phone }}</td>
+                                    <td>{{ $supplier->address }}</td>
+                                    <td>{{ $supplier->description }}</td>
                                     <td>
-                                        <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-warning btn-sm">
+                                        <a href="{{ route('suppliers.edit', $supplier->id) }}" class="btn btn-warning btn-sm">
                                             Edit
                                         </a>
-                                        <form method="post" action="{{ route('customers.destroy', $customer->id) }}" class="d-inline">
+                                        <form method="post" action="{{ route('suppliers.destroy', $supplier->id) }}" class="d-inline">
                                             @csrf
                                             <button type="button" class="btn btn-danger btn-sm" onclick="confirmSwalAlert(this)">
                                                 Delete</button>
@@ -74,7 +74,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $customers->withQueryString()->links() }}
+                        {{ $suppliers->withQueryString()->links() }}
                     </div>
                 </div>
             </div>

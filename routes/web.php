@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -92,6 +94,32 @@ Route::middleware('auth')->group(function () {
             ->name('profiles.index');
         Route::post('/update', [ProfileController::class, 'update'])
             ->name('profiles.update');
+    });
+
+    Route::group(['prefix' => 'settings'], function() {
+        Route::get('/index', [SettingController::class, 'index'])
+            ->name('settings.index');
+        Route::get('/edit', [SettingController::class, 'edit'])
+            ->name('settings.edit');
+        Route::post('/update', [SettingController::class, 'update'])
+            ->name('settings.update');
+        Route::post('restore', [SettingController::class, 'restore'])
+            ->name('settings.restore');
+    });
+
+    Route::group(['prefix' => 'suppliers'], function() {
+        Route::get('/index', [SupplierController::class, 'index'])
+            ->name('suppliers.index');
+        Route::get('/create', [SupplierController::class, 'create'])
+            ->name('suppliers.create');
+        Route::post('/store', [SupplierController::class, 'store'])
+            ->name('suppliers.store');
+        Route::get('/edit/{id}', [SupplierController::class, 'edit'])
+            ->name('suppliers.edit');
+        Route::post('/update/{id}', [SupplierController::class, 'update'])
+            ->name('suppliers.update');
+        Route::post('/destroy/{id}', [SupplierController::class, 'destroy'])
+            ->name('suppliers.destroy');
     });
 });
 

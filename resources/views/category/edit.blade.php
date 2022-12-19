@@ -1,21 +1,16 @@
 @extends('layouts.app')
+@section('header')
+<div class="col-sm-6">
+    <h1>Edit Category</h1>
+</div>
+<div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="#">Master Data</a></li>
+        <li class="breadcrumb-item active">Category</li>
+    </ol>
+</div>
+@endsection
 @section('content')
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Edit Category</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Product & Category</a></li>
-                    <li class="breadcrumb-item active">Category</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="content">
     <div class="container-fluid">
         <div class="card">
