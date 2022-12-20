@@ -273,7 +273,7 @@
             var self = this;
             // Supplier select2
             $("#supplier").select2().on('change', function() {
-                selft.purchase.supplier_id = $(this).val();
+                self.purchase.supplier_id = $(this).val();
             });
 
             // Product select2
@@ -281,9 +281,9 @@
                 placeholder: "Select Product",
             }).on('change', function() {
                 if ($(this).val()) {
-                    selft.currPurchaseDetail.product_id = $(this).val();
-                    selft.currPurchaseDetail.units = selft.products[selft.currPurchaseDetail.product_id].units;
-                    selft.currPurchaseDetail.unit_id = selft.currPurchaseDetail.units[0].id;
+                    self.currPurchaseDetail.product_id = $(this).val();
+                    self.currPurchaseDetail.units = self.products[self.currPurchaseDetail.product_id].units;
+                    self.currPurchaseDetail.unit_id = self.currPurchaseDetail.units[0].id;
                 }
             });
         },

@@ -78,7 +78,7 @@
                                         {{ $product->code }}
                                     </td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ implode(', ', $product->units->pluck('name')->toArray()) }}</td>
+                                    <td>{{ $product->stock_string }}</td>
                                     <td>{{ Helper::numberFormatNoZeroes($product->units[0]->sell_price) }}</td>
                                     <td>
                                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm">

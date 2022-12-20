@@ -90,6 +90,9 @@ class OrderController extends Controller
                     $orderDetail->subtotal_discount = $orderDetail->quantity * $orderDetail->discount;
                     $orderDetail->total = $orderDetail->subtotal - $orderDetail->subtotal_discount;
                     $orderDetail->save();
+
+                    // Update Product Stock
+                    StockController::subStock($product, $orderDetail->quantity_total);
                 }
             }
 
