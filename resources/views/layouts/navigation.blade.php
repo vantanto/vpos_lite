@@ -54,6 +54,31 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item @if(Request::routeIs('purchases.*')) menu-open @endif">
+                    <a href="#" class="nav-link @if(Request::routeIs('purchases.*')) active @endif">
+                        <i class="nav-icon fas fa-cart-plus"></i>
+                        <p>
+                            Purchase
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('purchases.index') }}" 
+                                class="nav-link">
+                                <i class="{{ Request::routeIs('purchases.index') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <p>Purchase List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('purchases.create') }}" 
+                                class="nav-link">
+                                <i class="{{ Request::routeIs('purchases.create') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <p>Add Purchase</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 @php $routeIs_MasterData = Request::routeIs('categories.*') || Request::routeIs('customers.*') || Request::routeIs('products.*')
                     || Request::routeIs('suppliers.*'); 
                 @endphp

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -94,6 +95,23 @@ Route::middleware('auth')->group(function () {
             ->name('profiles.index');
         Route::post('/update', [ProfileController::class, 'update'])
             ->name('profiles.update');
+    });
+
+    Route::group(['prefix' => 'purchases'], function() {
+        Route::get('/index', [PurchaseController::class, 'index'])
+            ->name('purchases.index');
+        Route::get('/create', [PurchaseController::class, 'create'])
+            ->name('purchases.create');
+        Route::post('/store', [PurchaseController::class, 'store'])
+            ->name('purchases.store');
+        Route::get('/show/{id}', [PurchaseController::class, 'show'])
+            ->name('purchases.show');
+        Route::get('/edit/{id}', [PurchaseController::class, 'edit'])
+            ->name('purchases.edit');
+        Route::post('/update/{id}', [PurchaseController::class, 'update'])
+            ->name('purchases.update');
+        Route::post('/destroy/{id}', [PurchaseController::class, 'destroy'])
+            ->name('purchases.destroy');
     });
 
     Route::group(['prefix' => 'settings'], function() {

@@ -1,9 +1,4 @@
 @extends('layouts.app')
-@section('style')
-<style>
-    [v-cloak] { display: none; }
-</style>
-@endsection
 @section('content')
 <section id="vue-container" class="content" v-cloak>
     <div class="container-fluid">
@@ -173,7 +168,11 @@
 </section>
 @endsection
 @section('script')
+@if (config('app.debug'))
 <script src="https://unpkg.com/vue@3.2.41/dist/vue.global.js"></script>
+@else
+<script src="https://unpkg.com/vue@3.2.41/dist/vue.global.prod.js"></script>
+@endif
 <script>
     const vm = Vue.createApp({
         data() {
