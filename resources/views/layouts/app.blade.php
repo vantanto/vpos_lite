@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/iziToast/css/iziToast.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap4-toggle/bootstrap4-toggle.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset("assets/dist/css/adminlte.min.css") }}">
     <link rel="stylesheet" href="{{ asset("assets/dist/css/custom.css") }}">
@@ -59,6 +60,7 @@
     <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/iziToast/js/iziToast.min.js') }}"></script>  
+    <script src="{{ asset('assets/plugins/bootstrap4-toggle/bootstrap4-toggle.min.js') }}"></script>  
 
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>    
     <script src="{{ asset('assets/dist/js/custom.js') }}"></script>

@@ -27,18 +27,11 @@ class SettingController extends Controller
     {
         DB::beginTransaction();
         try {
-            $validated = [
-                'store-name',
-                'store-address',
-                'store-phone',
-            ];
-
-            foreach ($validated as $settingKey) {
-                $inputValue = $request->input($settingKey);
-                if ($inputValue) {
-                    Setting::where('key', $settingKey)->update(['value' => $inputValue]);
-                }
+            $setting_defaults = Setting::$Default;
+            foreach ($setting_defaults as $key => $setting_default) {
+                $setting_defaults[$key]['value'] = $request->input($setting_default['key']);
             }
+            Setting::upsert($setting_defaults, ['key'], ['value']);
 
             DB::commit();
 

@@ -26,3 +26,23 @@ tbody.tbody-rowspan:hover td {
 	background-color: transparent;
 	border-color: rgba(0,0,0,.075);
 }
+
+.toggle-group .toggle-on, 
+.toggle-group .toggle-off {
+	font-size: 14px;
+}
+
+.btn-light.toggle-off {
+	background-color: #e6e6e6;
+	border-color: #e6e6e6;
+}
+
+.toggle.ios,
+.toggle-on.ios,
+.toggle-off.ios {
+	border-radius: 20px;
+}
+
+.toggle.ios .toggle-handle {
+	border-radius: 20px;
+}

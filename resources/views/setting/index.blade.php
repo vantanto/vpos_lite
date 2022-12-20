@@ -68,6 +68,25 @@
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="tax-nominal" class="col-sm-4 col-form-label">Tax</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="tax-nominal" name="tax-nominal"
+                                            value="{{ $settings['tax-nominal']->value }}" @if($method == "index") readonly @endif>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="hidden" name="tax-use" value="0">
+                                    <input type="checkbox" name="tax-use" id="tax-use" data-toggle="toggle" data-style="ios"
+                                        @if($settings['tax-use']->value == "1") checked @endif 
+                                        value="1" @if($method == "index") readonly @endif>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
