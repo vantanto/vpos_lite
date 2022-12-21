@@ -18,23 +18,25 @@ class Product extends Model
         'stock', 'category_id', 'is_show',
     ];
 
+    protected $hidden = [
+        'buy_price',
+    ];
+
     protected $casts = [
         'is_show' => 'boolean',
     ];
 
-    protected function stockString(): Attribute
+    public function stockString($quantity = 'default')
     {
         $stockString = "";
         $productUnits = $this->units->sortByDesc('quantity');
-        $stock_temp = $this->stock;
+        $stock_temp = $quantity == 'default' ? $this->stock : $quantity;
         foreach ($productUnits as $productUnit) {
             $stockUnit = $stock_temp > 0 ? floor($stock_temp / $productUnit->quantity) : 0;
             $stockString .=  Helper::numberFormatNoZeroes($stockUnit) . " {$productUnit->name} "; 
             if ($stockUnit != 0) $stock_temp -= $stockUnit * $productUnit->quantity;
         }
-        return Attribute::make(
-            get: fn($value) => $stockString
-        );
+        return $stockString;
     }
 
     public function category()

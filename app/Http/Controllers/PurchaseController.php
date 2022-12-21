@@ -84,7 +84,7 @@ class PurchaseController extends Controller
                     $purchaseDetail->save();
 
                     // Update Product Stock & Buy Price
-                    StockController::addStock($product, $purchaseDetail);
+                    StockFlowController::addStock($product, $purchase, $purchaseDetail, "store");
                 }
             }
 
@@ -150,7 +150,7 @@ class PurchaseController extends Controller
                         $purchaseDetail = PurchaseDetail::find($pd['id']);
                         
                         // Rollback Product Stock & Buy Price
-                        $product = StockController::rollbackAddStock($product, $purchaseDetail);
+                        $product = StockFlowController::rollbackAddStock($product, $purchaseDetail);
                     }
                     $purchaseDetail->purchase_id = $purchase->id;
                     $purchaseDetail->product_id = $pd['product_id'];
@@ -165,7 +165,7 @@ class PurchaseController extends Controller
                     $purchaseDetail->save();
 
                     // Update Product Stock & Buy Price
-                    StockController::addStock($product, $purchaseDetail);
+                    StockFlowController::addStock($product, $purchase, $purchaseDetail, "update");
                 }
             }
 
@@ -174,9 +174,10 @@ class PurchaseController extends Controller
                 $deletedPurchaseDetails = PurchaseDetail::with('product')->whereIn('id', $dataPurchase['deletedPurchaseDetails'])->get();
                 foreach ($deletedPurchaseDetails as $purchaseDetail) {
                     // Rollback Product Stock & Buy Price
-                    $product = StockController::rollbackAddStock($purchaseDetail->product, $purchaseDetail);
+                    $product = StockFlowController::rollbackAddStock($purchaseDetail->product, $purchaseDetail);
                     $product->save();
                 }
+                StockFlowController::whereIn('purchase_detail_id', $dataPurchase['deletedPurchaseDetails'])->delete();
                 $deletedPurchaseDetails->delete();
             }
 
@@ -195,9 +196,10 @@ class PurchaseController extends Controller
             $purchase = Purchase::with('purchaseDetails.product')->where('id', $id)->first();
             foreach ($purchase->purchaseDetails as $purchaseDetail) {
                 // Rollback Product Stock & Buy Price
-                $product = StockController::rollbackAddStock($purchaseDetail->product, $purchaseDetail);
+                $product = StockFlowController::rollbackAddStock($purchaseDetail->product, $purchaseDetail);
                 $product->save();
             }
+            $purchase->stockFlows()->delete();
             $purchase->purchaseDetails()->delete();
             $purchase->delete();
 

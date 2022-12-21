@@ -26,6 +26,11 @@ class Purchase extends Model
         return $this->belongsTo(Supplier::class);
     }
 
+    public function stockFlows()
+    {
+        return $this->hasMany(StockFlow::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

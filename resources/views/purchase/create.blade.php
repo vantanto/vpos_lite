@@ -19,7 +19,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="date" class="required">Date</label>
-                            <input type="date" id="date" class="form-control" 
+                            <input type="datetime-local" id="date" class="form-control" 
                                 required
                                 v-model="purchase.date">
                             <span class="invalid-feedback"></span>
@@ -159,7 +159,7 @@
                 sendForm : false,
                 purchase: {
                     supplier_id: '',
-                    date: '{{ date("Y-m-d") }}',
+                    date: '{{ date("Y-m-d H:i") }}',
                     subtotal: 0,
                     additional: 0,
                     discount: 0,

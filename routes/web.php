@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -123,6 +124,11 @@ Route::middleware('auth')->group(function () {
             ->name('settings.update');
         Route::post('restore', [SettingController::class, 'restore'])
             ->name('settings.restore');
+    });
+
+    Route::group(['prefix' => 'stocks'], function() {
+        Route::get('/index', [StockController::class, 'index'])
+            ->name('stocks.index');
     });
 
     Route::group(['prefix' => 'suppliers'], function() {

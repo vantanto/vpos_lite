@@ -27,6 +27,11 @@ class PurchaseDetail extends Model
         return $this->belongsTo(Purchase::class);
     }
 
+    public function stockFlow()
+    {
+        return $this->hasOne(StockFlow::class);
+    }
+
     public function unit()
     {
         return $this->belongsTo(Unit::class);

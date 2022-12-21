@@ -39,8 +39,8 @@
                                 <td>{{ Helper::numberFormatNoZeroes($product->units[0]->sell_price) }}</td>
                             </tr>
                             <tr>
-                                <th>Unit</th>
-                                <td>{{ $product->units[0]->name }}</td>
+                                <th>Stock Unit</th>
+                                <td>{{ $product->stockString() }}</td>
                             </tr>
                             <tr>
                                 <th>Show on Transaction</th>

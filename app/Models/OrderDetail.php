@@ -17,6 +17,10 @@ class OrderDetail extends Model
         'subtotal', 'subtotal_discount', 'total',
     ];
 
+    protected $hidden = [
+        'stock_price',
+    ];
+
     public function order()
     {
         return $this->belongsTo(Order::class);
@@ -25,6 +29,11 @@ class OrderDetail extends Model
     public function product()
     {
         return $this->belongsTo(Product::Class);
+    }
+
+    public function stockFlow()
+    {
+        return $this->hasOne(StockFlow::class);
     }
 
     public function unit()

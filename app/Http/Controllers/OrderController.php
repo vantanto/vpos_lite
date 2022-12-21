@@ -92,7 +92,7 @@ class OrderController extends Controller
                     $orderDetail->save();
 
                     // Update Product Stock
-                    StockController::subStock($product, $orderDetail->quantity_total);
+                    StockFlowController::subStock($product, $order, $orderDetail, "store");
                 }
             }
 

@@ -10,7 +10,7 @@
     </ol>
 </div>
 @endsection
-@section('conten')
+@section('content')
 <section class="content">
     <div class="container-fluid">
         <div class="card">

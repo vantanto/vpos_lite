@@ -59,7 +59,7 @@
                                     <th>#</th>
                                     <th>Code</th>
                                     <th>Name</th>
-                                    <th>Unit</th>
+                                    <th>Stock Unit</th>
                                     <th>Sell Price</th>
                                     <th>Action</th>
                                 </tr>
@@ -78,7 +78,7 @@
                                         {{ $product->code }}
                                     </td>
                                     <td>{{ $product->name }}</td>
-                                    <td>{{ $product->stock_string }}</td>
+                                    <td>{{ $product->stockString() }}</td>
                                     <td>{{ Helper::numberFormatNoZeroes($product->units[0]->sell_price) }}</td>
                                     <td>
                                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm">

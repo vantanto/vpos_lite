@@ -38,6 +38,11 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
+    public function stockFlows()
+    {
+        return $this->hasMany(StockFlow::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::Class);

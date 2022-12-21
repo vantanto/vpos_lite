@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->dateTime('date');
             $table->decimal('subtotal', 20, 2)->default(0);
             $table->decimal('additional', 20, 2)->default(0);
             $table->decimal('discount', 20, 2)->default(0);

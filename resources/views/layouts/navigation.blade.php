@@ -121,6 +121,26 @@
                         </li>
                     </ul>
                 </li>
+                @php $routeIs_Report = Request::routeIs('stocks.*'); 
+                @endphp
+                <li class="nav-item @if($routeIs_Report) menu-open @endif">
+                    <a href="#" class="nav-link @if($routeIs_Report) active @endif">
+                        <i class="nav-icon fas fa-file-alt"></i>
+                        <p>
+                            Report
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('stocks.index') }}" 
+                                class="nav-link">
+                                <i class="{{ Request::routeIs('stocks.*') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <p>Stock</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="{{ route('settings.index') }}" 
                         class="nav-link @if(Request::routeIs('settings.*')) active @endif">
