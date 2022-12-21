@@ -29,7 +29,7 @@
                                 <th>Discount</th>
                                 <th class="text-right">@{{ numberFormatNoZeroes(order.discount) }}</th>
                             </tr>
-                            <tr>
+                            <tr v-if="tax_use == '1'">
                                 <th>Tax</th>
                                 <th class="text-right">@{{ numberFormatNoZeroes(order.tax) }}</th>
                             </tr>
@@ -179,6 +179,8 @@
             return {
                 customers: JSON.parse('@json($customers)'),
                 products: JSON.parse('@json($products->keyBy("id"))'),
+                tax_use: "{{ Helper::settings('tax-use') }}",
+                tax_nominal: parseFloat("{{ Helper::settings('tax-nominal') }}"),
                 sendForm : false,
                 order: {
                     customer: {
@@ -212,7 +214,9 @@
                         vm.order.subtotal += order_detail_qty * (parseFloat(item.price) || 0);
                         vm.order.discount += order_detail_qty * (parseFloat(item.discount) || 0);
                     });
-                    vm.order.tax = (vm.order.subtotal - vm.order.discount) * 11 / 100;
+                    if (vm.tax_use == '1') {
+                        vm.order.tax = (vm.order.subtotal - vm.order.discount) * vm.tax_nominal / 100;
+                    }
                 },
                 deep: true,
             }
