@@ -25,7 +25,7 @@
     @yield('style')
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-navbar-fixed layout-fixed">
     <div class="wrapper">
         @include('layouts.navbar')        
         @include('layouts.navigation')        
@@ -63,6 +63,7 @@
     <script src="{{ asset('assets/plugins/bootstrap4-toggle/bootstrap4-toggle.min.js') }}"></script>  
 
     <script src="{{ asset("assets/dist/js/adminlte.min.js") }}"></script>    
+    <script src="{{ asset("assets/dist/js/sidebar-collapse.js") }}"></script>    
     <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
     <script src="{{ asset('assets/dist/js/submitForm.js') }}"></script>
 
