@@ -34,16 +34,15 @@
                             <span class="invalid-feedback"></span>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="email" class="required">Email</label>
-                            <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email" 
-                                required>
-                            <span class="invalid-feedback"></span>
-                        </div>
-                        <div class="form-group col-md-6">
                             <label for="password" class="required">Password</label>
                             <input type="password" id="password" name="password" class="form-control" placeholder="Enter password"
                                 required>
                             <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email" >
+                            <span class="invalid-feedback"></span>
                         </div>
                     </div>
 

@@ -34,7 +34,7 @@ class UserController extends Controller
         $validator = \Validator::make($request->all(), [
             'name' => 'required',
             'username' => 'required|unique:users,username',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'nullable|email|unique:users,email',
             'password' => ['required', Rules\Password::defaults()],
         ]);
         if ($validator->fails()) {
@@ -61,7 +61,7 @@ class UserController extends Controller
         $validator = \Validator::make($request->all(), [
             'name' => 'required',
             'username' => 'required|unique:users,username,'.$id,
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'nullable|email|unique:users,email,'.$id,
         ]);
         if ($validator->fails()) {
             return response()->json(['status' => 'validator', 'msg' => $validator->messages()], 400);

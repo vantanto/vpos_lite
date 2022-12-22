@@ -36,9 +36,8 @@
                             <span class="invalid-feedback"></span>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="email" class="required">Email</label>
+                            <label for="email">Email</label>
                             <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email" 
-                                required
                                 value="{{ $user->email }}">
                             <span class="invalid-feedback"></span>
                         </div>
