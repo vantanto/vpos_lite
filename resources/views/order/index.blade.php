@@ -90,14 +90,18 @@
                                     <td class="text-right">{{ Helper::numberFormatNoZeroes($order->discount) }}</td>
                                     <td class="text-right">{{ Helper::numberFormatNoZeroes($order->total) }}</td>
                                     <td>
-                                        <a href="{{ route('orders.show', $order->code) }}" class="btn btn-info btn-sm">
+                                        <a href="{{ route('receipts.show', $order->code) }}" class="btn bg-lightblue btn-sm">
                                             View
                                         </a>
+                                        @can('admin')
+                                        <a href="{{ route('orders.show', $order->code) }}" class="btn btn-info btn-sm">
+                                            Detail</a>
                                         <form method="post" action="{{ route('orders.destroy', $order->code) }}" class="d-inline">
                                             @csrf
                                             <button type="button" class="btn btn-danger btn-sm" onclick="confirmSwalAlert(this)">
                                                 Delete</button>
                                         </form>
+                                        @endcan
                                     </td>
                                 </tr>
                                 @endforeach

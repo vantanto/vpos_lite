@@ -55,6 +55,5 @@
 </section>
 @endsection
 @section('script')
-<script src="{{ asset('assets/js/submitForm.js') }}"></script>
 <script>mainFormSubmit();</script>
 @endsection

@@ -10,6 +10,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,26 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    Route::group(['prefix' => 'orders'], function() {
+        Route::get('/index', [OrderController::class, 'index'])
+            ->name('orders.index');
+        Route::get('/create', [OrderController::class, 'create'])
+            ->name('orders.create');
+        Route::post('/store', [OrderController::class, 'store'])
+            ->name('orders.store');
+        Route::get('/show/{id}', [OrderController::class, 'show'])
+            ->name('orders.show')
+            ->middleware('can:admin');
+        Route::post('/destroy/{id}', [OrderController::class, 'destroy'])
+            ->name('orders.destroy')
+            ->middleware('can:admin');
+    });
+
+    Route::group(['prefix' => 'receipts'], function() {
+        Route::get('/show/{code}', [OrderController::class, 'receipt'])
+            ->name('receipts.show');
+    });
 
     Route::group(['prefix' => 'categories'], function() {
         Route::get('/index', [CategoryController::class, 'index'])
@@ -56,24 +77,6 @@ Route::middleware('auth')->group(function () {
             ->name('customers.destroy');
     });
 
-    Route::group(['prefix' => 'orders'], function() {
-        Route::get('/index', [OrderController::class, 'index'])
-            ->name('orders.index');
-        Route::get('/create', [OrderController::class, 'create'])
-            ->name('orders.create');
-        Route::post('/store', [OrderController::class, 'store'])
-            ->name('orders.store');
-        Route::get('/show/{id}', [OrderController::class, 'show'])
-            ->name('orders.show');
-        Route::post('/destroy/{id}', [OrderController::class, 'destroy'])
-            ->name('orders.destroy');
-    });
-
-    Route::group(['prefix' => 'receipts'], function() {
-        Route::get('/show/{code}', [OrderController::class, 'receipt'])
-            ->name('receipts.show');
-    });
-
     Route::group(['prefix' => 'products'], function() {
         Route::get('/index', [ProductController::class, 'index'])
             ->name('products.index');
@@ -91,46 +94,6 @@ Route::middleware('auth')->group(function () {
             ->name('products.destroy');
     });
 
-    Route::group(['prefix' => 'profiles'], function () {
-        Route::get('/index', [ProfileController::class, 'index'])
-            ->name('profiles.index');
-        Route::post('/update', [ProfileController::class, 'update'])
-            ->name('profiles.update');
-    });
-
-    Route::group(['prefix' => 'purchases'], function() {
-        Route::get('/index', [PurchaseController::class, 'index'])
-            ->name('purchases.index');
-        Route::get('/create', [PurchaseController::class, 'create'])
-            ->name('purchases.create');
-        Route::post('/store', [PurchaseController::class, 'store'])
-            ->name('purchases.store');
-        Route::get('/show/{id}', [PurchaseController::class, 'show'])
-            ->name('purchases.show');
-        Route::get('/edit/{id}', [PurchaseController::class, 'edit'])
-            ->name('purchases.edit');
-        Route::post('/update/{id}', [PurchaseController::class, 'update'])
-            ->name('purchases.update');
-        Route::post('/destroy/{id}', [PurchaseController::class, 'destroy'])
-            ->name('purchases.destroy');
-    });
-
-    Route::group(['prefix' => 'settings'], function() {
-        Route::get('/index', [SettingController::class, 'index'])
-            ->name('settings.index');
-        Route::get('/edit', [SettingController::class, 'edit'])
-            ->name('settings.edit');
-        Route::post('/update', [SettingController::class, 'update'])
-            ->name('settings.update');
-        Route::post('restore', [SettingController::class, 'restore'])
-            ->name('settings.restore');
-    });
-
-    Route::group(['prefix' => 'stocks'], function() {
-        Route::get('/index', [StockController::class, 'index'])
-            ->name('stocks.index');
-    });
-
     Route::group(['prefix' => 'suppliers'], function() {
         Route::get('/index', [SupplierController::class, 'index'])
             ->name('suppliers.index');
@@ -144,6 +107,63 @@ Route::middleware('auth')->group(function () {
             ->name('suppliers.update');
         Route::post('/destroy/{id}', [SupplierController::class, 'destroy'])
             ->name('suppliers.destroy');
+    });
+
+    Route::group(['prefix' => 'profiles'], function () {
+        Route::get('/index', [ProfileController::class, 'index'])
+            ->name('profiles.index');
+        Route::post('/update', [ProfileController::class, 'update'])
+            ->name('profiles.update');
+    });
+
+    Route::middleware('can:admin')->group(function() {
+        Route::group(['prefix' => 'purchases'], function() {
+            Route::get('/index', [PurchaseController::class, 'index'])
+                ->name('purchases.index');
+            Route::get('/create', [PurchaseController::class, 'create'])
+                ->name('purchases.create');
+            Route::post('/store', [PurchaseController::class, 'store'])
+                ->name('purchases.store');
+            Route::get('/show/{id}', [PurchaseController::class, 'show'])
+                ->name('purchases.show');
+            Route::get('/edit/{id}', [PurchaseController::class, 'edit'])
+                ->name('purchases.edit');
+            Route::post('/update/{id}', [PurchaseController::class, 'update'])
+                ->name('purchases.update');
+            Route::post('/destroy/{id}', [PurchaseController::class, 'destroy'])
+                ->name('purchases.destroy');
+        });
+    
+        Route::group(['prefix' => 'stocks'], function() {
+            Route::get('/index', [StockController::class, 'index'])
+                ->name('stocks.index');
+        });
+
+        Route::group(['prefix' => 'users'], function() {
+            Route::get('/index', [UserController::class, 'index'])
+                ->name('users.index');
+            Route::get('/create', [UserController::class, 'create'])
+                ->name('users.create');
+            Route::post('/store', [UserController::class, 'store'])
+                ->name('users.store');
+            Route::get('/edit/{id}', [UserController::class, 'edit'])
+                ->name('users.edit');
+            Route::post('/update/{id}', [UserController::class, 'update'])
+                ->name('users.update');
+            Route::post('/destroy/{id}', [UserController::class, 'destroy'])
+                ->name('users.destroy');
+        });
+
+        Route::group(['prefix' => 'settings'], function() {
+            Route::get('/index', [SettingController::class, 'index'])
+                ->name('settings.index');
+            Route::get('/edit', [SettingController::class, 'edit'])
+                ->name('settings.edit');
+            Route::post('/update', [SettingController::class, 'update'])
+                ->name('settings.update');
+            Route::post('restore', [SettingController::class, 'restore'])
+                ->name('settings.restore');
+        });
     });
 });
 

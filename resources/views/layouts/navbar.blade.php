@@ -8,6 +8,9 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{ route('orders.create') }}" class="nav-link">Add Order</a>
+        </li>
         {{-- <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('orders.create') }}" class="nav-link">Add Order</a>
         </li> --}}
@@ -66,7 +69,7 @@
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <img src='{{ asset(Auth::user()->avatar_url) }}' class="user-image img-circle elevation-2" alt="User Image">
-                <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                <span class="d-none d-md-inline @if(Auth::user()->role === 1) text-danger @endif">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
@@ -93,11 +96,11 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>
 <!-- /.navbar -->

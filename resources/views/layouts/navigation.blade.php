@@ -54,6 +54,7 @@
                         </li>
                     </ul>
                 </li>
+                @can('admin')
                 <li class="nav-item @if(Request::routeIs('purchases.*')) menu-open @endif">
                     <a href="#" class="nav-link @if(Request::routeIs('purchases.*')) active @endif">
                         <i class="nav-icon fas fa-cart-plus"></i>
@@ -79,6 +80,7 @@
                         </li>
                     </ul>
                 </li>
+                @endcan
                 @php $routeIs_MasterData = Request::routeIs('categories.*') || Request::routeIs('customers.*') || Request::routeIs('products.*')
                     || Request::routeIs('suppliers.*'); 
                 @endphp
@@ -121,6 +123,7 @@
                         </li>
                     </ul>
                 </li>
+                @can('admin')
                 @php $routeIs_Report = Request::routeIs('stocks.*'); 
                 @endphp
                 <li class="nav-item @if($routeIs_Report) menu-open @endif">
@@ -141,6 +144,17 @@
                         </li>
                     </ul>
                 </li>
+                @endcan
+                @can('admin')
+                <li class="nav-item">
+                    <a href="{{ route('users.index') }}" 
+                        class="nav-link @if(Request::routeIs('users.*')) active @endif">
+                        <i class="nav-icon fas fa-user-cog"></i>
+                        <p>User</p>
+                    </a>
+                </li>
+                @endcan
+                @can('admin')
                 <li class="nav-item">
                     <a href="{{ route('settings.index') }}" 
                         class="nav-link @if(Request::routeIs('settings.*')) active @endif">
@@ -148,6 +162,7 @@
                         <p>Setting</p>
                     </a>
                 </li>
+                @endcan
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
