@@ -27,10 +27,22 @@
                             <input type="date" id="date_end" name="date_end" class="form-control" 
                                 value="{{ request()->input('date_end') }}">
                         </div>
+                        <div class="form-group col-md-4">
+                            @php $fproducts = request()->input('fproducts') ?? []; @endphp
+                            <label for="fproducts">Product</label>
+                            <select id="fproducts" name="fproducts[]" class="form-control" multiple>
+                                @foreach ($products as $product)
+                                <option value="{{ $product->id }}" @if(in_array($product->id, $fproducts)) selected @endif>
+                                    {{ $product->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group ">
                         <button type="submit" class="btn btn-outline-success">Apply Filter</button>
                         <a href="{{ request()->url() }}" class="btn btn-outline-secondary">Reset Filter</a>
+                        <a href="{{ request()->fullUrlWithQuery(['export' => 'pdf']) }}" target="_blank" class="btn bg-maroon ml-3">Export PDF</a>
                     </div>
                 </form>
             </div>
@@ -48,7 +60,7 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Product</th>
                                     <th>Stock In</th>
                                     <th>Stock Out</th>
                                     <th>Current Stock</th>
@@ -60,8 +72,7 @@
                                     <td>{{ $productStock->name }}</td>
                                     <td>{{ $productStock->stockString($productStock->sum_qty_total_in) }}</td>
                                     <td>{{ $productStock->stockString($productStock->sum_qty_total_out) }}</td>
-                                    <td>{{ $productStock->stockString(
-                                        $productStock->stock - $productStock->sum_csf_qty_total_in + $productStock->sum_csf_qty_total_out) }}</td>
+                                    <td>{{ $productStock->stockString($productStock->stock - $productStock->sum_csf_qty_total_in + $productStock->sum_csf_qty_total_out) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -73,4 +84,11 @@
         </div>
     </div>
 </section>
+@endsection
+@section('script')
+<script>
+    $("#fproducts").select2({
+        placeholder: 'Select Product'
+    });
+</script>
 @endsection

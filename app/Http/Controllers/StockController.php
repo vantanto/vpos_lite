@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\StockFlow;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class StockController extends Controller
 {
@@ -35,8 +36,26 @@ class StockController extends Controller
             })
             ->orderBy('stock_flows.id', 'desc')
             ->orderBy('products.id')
-            ->groupBy('products.id')
-            ->paginate(15);
-        return view('stock.index', compact('productStocks', 'dateStart', 'dateEnd'));
+            ->groupBy('products.id');
+        
+        if ($request->fproducts) {
+            $productStocks->whereIn('products.id', $request->fproducts);
+        }
+        
+        $data = [
+            'productStocks' => $productStocks,
+            'dateStart' => $dateStart,
+            'dateEnd' => $dateEnd,
+        ];
+
+        if ($request->export == "pdf") {
+            $data['productStocks'] = $productStocks->get();
+            $pdf = Pdf::loadView('stock.pdf', $data);
+            return $pdf->download('Stock Report '.$dateStart->format('Y-m-d').'-'.$dateEnd->format('Y-m-d').'.pdf');
+        } else {
+            $data['productStocks'] = $productStocks->paginate(15);
+            $data['products'] = Product::all();
+            return view('stock.index', $data);
+        }
     }
 }
