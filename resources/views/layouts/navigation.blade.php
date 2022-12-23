@@ -152,6 +152,15 @@
                             </a>
                         </li>
                     </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('reports.purchase_statements.index') }}" 
+                                class="nav-link">
+                                <i class="{{ Request::routeIs('reports.purchase_statements.*') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <p>Purchase Statement</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 @endcan
                 @can('admin')

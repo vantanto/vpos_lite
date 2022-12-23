@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderStatementController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseStatementController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
@@ -160,6 +161,11 @@ Route::middleware('auth')->group(function () {
             Route::group(['prefix' => 'order_statements'], function() {
                 Route::get('/index', [OrderStatementController::class, 'index'])
                     ->name('reports.order_statements.index');
+            });
+
+            Route::group(['prefix' => 'purchase_statements'], function() {
+                Route::get('/index', [PurchaseStatementController::class, 'index'])
+                    ->name('reports.purchase_statements.index');
             });
         });
 
