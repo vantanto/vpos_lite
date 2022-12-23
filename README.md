@@ -1,7 +1,7 @@
 
 # 🛒 vpos_lite - Point Of Sales (Lite Version)
 
-Point of Sales to manage order and purchase transactions with stock system. Powered by laravel 9 and tabler template.
+Point of Sales to manage order and purchase transactions with stock system. Powered by laravel 9 and AdminLTE template.
 
 
 ## ⚡ Features
