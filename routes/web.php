@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderStatementController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
@@ -133,11 +134,6 @@ Route::middleware('auth')->group(function () {
             Route::post('/destroy/{id}', [PurchaseController::class, 'destroy'])
                 ->name('purchases.destroy');
         });
-    
-        Route::group(['prefix' => 'stocks'], function() {
-            Route::get('/index', [StockController::class, 'index'])
-                ->name('stocks.index');
-        });
 
         Route::group(['prefix' => 'users'], function() {
             Route::get('/index', [UserController::class, 'index'])
@@ -152,6 +148,19 @@ Route::middleware('auth')->group(function () {
                 ->name('users.update');
             Route::post('/destroy/{id}', [UserController::class, 'destroy'])
                 ->name('users.destroy');
+        });
+
+        // Report Routing
+        Route::group(['prefix' => 'reports'], function() {
+            Route::group(['prefix' => 'stocks'], function() {
+                Route::get('/index', [StockController::class, 'index'])
+                    ->name('reports.stocks.index');
+            });
+            
+            Route::group(['prefix' => 'order_statements'], function() {
+                Route::get('/index', [OrderStatementController::class, 'index'])
+                    ->name('reports.order_statements.index');
+            });
         });
 
         Route::group(['prefix' => 'settings'], function() {

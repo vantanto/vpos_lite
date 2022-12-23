@@ -124,7 +124,7 @@
                     </ul>
                 </li>
                 @can('admin')
-                @php $routeIs_Report = Request::routeIs('stocks.*'); 
+                @php $routeIs_Report = Request::routeIs('reports.*'); 
                 @endphp
                 <li class="nav-item @if($routeIs_Report) menu-open @endif">
                     <a href="#" class="nav-link @if($routeIs_Report) active @endif">
@@ -136,10 +136,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('stocks.index') }}" 
+                            <a href="{{ route('reports.stocks.index') }}" 
                                 class="nav-link">
-                                <i class="{{ Request::routeIs('stocks.*') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <i class="{{ Request::routeIs('reports.stocks.*') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
                                 <p>Stock</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('reports.order_statements.index') }}" 
+                                class="nav-link">
+                                <i class="{{ Request::routeIs('reports.order_statements.*') ? 'fas' : 'far' }} fa-circle nav-icon"></i>
+                                <p>Order Statement</p>
                             </a>
                         </li>
                     </ul>

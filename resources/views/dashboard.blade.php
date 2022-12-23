@@ -18,7 +18,8 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>{{ Helper::numberFormatNoZeroes($newOrder) }}</h3>
-                        <p>New Order</p>
+                        <p class="mb-0">New Order</p>
+                        <small>Today</small>
                     </div>
                     <div class="icon"><i class="fas fa-shopping-cart"></i></div>
                 </div>
@@ -27,7 +28,8 @@
                 <div class="small-box bg-info">
                     <div class="inner">
                         <h3>{{ Helper::numberFormatNoZeroes($totalOrder) }}</h3>
-                        <p>Total Order</p>
+                        <p class="mb-0">Total Order</p>
+                        <small>Today</small>
                     </div>
                     <div class="icon"><i class="fas fa-dollar-sign"></i></div>
                 </div>
@@ -36,7 +38,8 @@
                 <div class="small-box bg-danger">
                     <div class="inner">
                         <h3>{{ Helper::numberFormatNoZeroes($newPurchase) }}</h3>
-                        <p>New Purchase</p>
+                        <p class="mb-0">New Purchase</p>
+                        <small>Today</small>
                     </div>
                     <div class="icon"><i class="fas fa-cart-plus"></i></div>
                 </div>
@@ -45,7 +48,8 @@
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3>{{ Helper::numberFormatNoZeroes($newCustomer) }}</h3>
-                        <p>New Customer</p>
+                        <p class="mb-0">New Customer</p>
+                        <small>This Month</small>
                     </div>
                     <div class="icon"><i class="fas fa-user"></i></div>
                 </div>

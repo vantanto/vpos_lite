@@ -7,7 +7,7 @@
         {{-- Username --}}
         <div class="form-group">
             <label for="username">Username or Email address</label>
-            <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" placeholder="username or email"
+            <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" placeholder="username or email" autofocus
                 value="{{ old('username') }}" />
             @error('username')
                 <div class="invalid-feedback">{{ $message }}</div>

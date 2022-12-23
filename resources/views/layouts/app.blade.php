@@ -31,7 +31,7 @@
         @include('layouts.navigation')        
 
         <div class="content-wrapper">
-            <section class="content-header">
+            <section class="content-header pt-2 pb-0">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         @yield('header')
