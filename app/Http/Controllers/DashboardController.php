@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Purchase;
+use App\Models\StockFlow;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,15 @@ class DashboardController extends Controller
         $newCustomer = Customer::whereBetween('created_at', [$dateStartMonth, $dateEnd])
             ->count();
         
-        return view('dashboard', compact('newOrder', 'totalOrder', 'newPurchase', 'newCustomer'));
+        $lastOrders = Order::with('customer')
+            ->whereBetween('date', [$dateStart, $dateEnd])
+            ->orderBy('date', 'desc')
+            ->limit(7)->get();
+        $lastStockFlows = StockFlow::with(['product', 'unit'])
+            ->whereBetween('date', [$dateStart, $dateEnd])
+            ->orderBy('date', 'desc')
+            ->limit(7)->get();
+        
+        return view('dashboard', compact('newOrder', 'totalOrder', 'newPurchase', 'newCustomer', 'lastOrders', 'lastStockFlows'));
     }
 }

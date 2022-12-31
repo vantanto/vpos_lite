@@ -94,7 +94,7 @@
                                             View
                                         </a>
                                         @can('admin')
-                                        <a href="{{ route('orders.show', $order->code) }}" class="btn btn-info btn-sm">
+                                        <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">
                                             Detail</a>
                                         <form method="post" action="{{ route('orders.destroy', $order->code) }}" class="d-inline">
                                             @csrf

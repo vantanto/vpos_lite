@@ -113,14 +113,14 @@ class OrderController extends Controller
         return redirect()->route('orders.index')->with('success', 'Order Successfully Deleted');
     }
 
-    public function show(Request $request, $code)
+    public function show(Request $request, $id)
     {
         $order = Order::with([
                 'orderDetails',
                 'orderDetails.product',
                 'orderDetails.unit',
             ])
-            ->where('code', $code)->first();
+            ->where('id', $id)->first();
         return view('order.show', compact('order'));
     }
 
