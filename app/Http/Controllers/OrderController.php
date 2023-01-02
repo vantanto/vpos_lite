@@ -100,8 +100,7 @@ class OrderController extends Controller
             return response()->json(['status' => 'success', 'msg' => 'Order Successfully Created', 'order_code' => $order->code], 200);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return response()->json(['status' => 'error', 'msg' => $ex->getMessage()], 500);
-            return response()->json(['status' => 'error', 'msg' => 'Order Failed Created'], 500);
+            return response()->json(['status' => 'error', 'msg' => config('app.debug') ? $ex->getMessage() : 'Order Failed Created'], 500);
         }
     }
 

@@ -92,8 +92,7 @@ class ProductController extends Controller
             return response()->json(['status' => 'success', 'msg' => 'Product Successfully Created'], 200);
         } catch (\Exception $ex) {
             DB::rollBack();
-            dd($ex->getMessage());
-            return response()->json(['status' => 'error', 'msg' => 'Product Failed Created'], 500);
+            return response()->json(['status' => 'error', 'msg' => config('app.debug') ? $ex->getMessage() : 'Product Failed Created'], 500);
         }
     }
 
@@ -175,7 +174,7 @@ class ProductController extends Controller
             return response()->json(['status' => 'success', 'msg' => 'Product Successfully Updated'], 200);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return response()->json(['status' => 'error', 'msg' => 'Product Failed Updated'], 500);
+            return response()->json(['status' => 'error', 'msg' => config('app.debug') ? $ex->getMessage() : 'Product Failed Updated'], 500);
         }
     }
 

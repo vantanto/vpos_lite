@@ -70,7 +70,7 @@
                             </select>
                         </div>
                         <div class="col-6 col-md-2">
-                            <input type="text" class="form-control" placeholder="Qty" 
+                            <input type="text" id="qty" class="form-control" placeholder="Qty" 
                                 required inputmode="numeric"
                                 :value="numberFormatNoZeroes(currOrderDetail.qty)"
                                 v-on:input="event => currOrderDetail.qty = numberNoCommas(event.target.value)" >
@@ -142,7 +142,7 @@
                         <div class="form-group row">
                             <label class="col-sm-6 col-form-label">Cash</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control text-right" data-type="thousand"
+                                <input type="text" id="order-pay" class="form-control text-right" data-type="thousand"
                                     :value="numberFormatNoZeroes(order.pay)"
                                     v-on:input="event => order.pay = numberNoCommas(event.target.value)">
                             </div>
@@ -323,7 +323,12 @@
                     vm.currOrderDetail.product_id = $(this).val();
                     vm.currOrderDetail.units = vm.products[vm.currOrderDetail.product_id].units;
                     vm.currOrderDetail.unit_id = vm.currOrderDetail.units[0].id;
+                    setTimeout(function () { $("#qty").focus() }, 200);
                 }
+            });
+
+            $('#modal-submit-order').on('shown.bs.modal', function() {
+                setTimeout(function () { $("#order-pay").focus() }, 200);
             });
         },
     }).mount('#vue-container');

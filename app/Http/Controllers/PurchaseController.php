@@ -92,7 +92,7 @@ class PurchaseController extends Controller
             return response()->json(['status' => 'success', 'msg' => 'Purchase Successfully Created'], 200);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return response()->json(['status' => 'error', 'msg' => 'Purchase Failed Created'], 500);
+            return response()->json(['status' => 'error', 'msg' => config('app.debug') ? $ex->getMessage() : 'Purchase Failed Created'], 500);
         }
     }
 
@@ -185,7 +185,7 @@ class PurchaseController extends Controller
             return response()->json(['status' => 'success', 'msg' => 'Purchase Successfully Updated'], 200);
         } catch (\Exception $ex) {
             DB::rollBack();
-            return response()->json(['status' => 'error', 'msg' => 'Purchase Failed Updated'], 500);
+            return response()->json(['status' => 'error', 'msg' => config('app.debug') ? $ex->getMessage() : 'Purchase Failed Updated'], 500);
         }
     }
 
@@ -207,7 +207,7 @@ class PurchaseController extends Controller
             return redirect()->route('purchases.index')->with('success', 'Purchase Successfully Deleted');
         } catch (\Exception $ex) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Purchase Failed Deleted');
+            return response()->json(['status' => 'error', 'msg' => config('app.debug') ? $ex->getMessage() : 'Purchase Failed Deleted'], 500);
         }
     }
 }

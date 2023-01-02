@@ -40,7 +40,7 @@ class SettingController extends Controller
             return response()->json(['status' => 'success', 'msg' => 'Setting Successfully updated'], 200);
         } catch (\Exception $ex) {
             DB::rollback();
-            return response()->json(['status' => 'error', 'msg' => 'Setting Failed updated'], 500);
+            return response()->json(['status' => 'error', 'msg' => config('app.debug') ? $ex->getMessage() : 'Setting Failed Updated'], 500);
         }
     }
 
@@ -56,7 +56,7 @@ class SettingController extends Controller
             return redirect()->route('settings.index')->with('success', 'Settting Success Restored');
         } catch (\Exception $ex) {
             DB::rollback();
-            return redirect()->route('settings.index')->with('error', 'Settting Failed Restored');
+            return response()->json(['status' => 'error', 'msg' => config('app.debug') ? $ex->getMessage() : 'Setting Failed Restored'], 500);
         }
     }
 }
