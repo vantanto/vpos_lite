@@ -323,12 +323,12 @@
                     vm.currOrderDetail.product_id = $(this).val();
                     vm.currOrderDetail.units = vm.products[vm.currOrderDetail.product_id].units;
                     vm.currOrderDetail.unit_id = vm.currOrderDetail.units[0].id;
-                    setTimeout(function () { $("#qty").focus() }, 200);
+                    setTimeout(() => $("#qty").focus(), 0);
                 }
             });
 
             $('#modal-submit-order').on('shown.bs.modal', function() {
-                setTimeout(function () { $("#order-pay").focus() }, 200);
+                setTimeout(() => $("#order-pay").focus(), 0);
             });
         },
     }).mount('#vue-container');

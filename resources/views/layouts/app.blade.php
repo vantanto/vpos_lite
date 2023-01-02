@@ -85,6 +85,9 @@
     </script>
     <script>
         $.fn.select2.defaults.set("theme", "bootstrap4");
+        $(document).on('select2:open', function(e) {
+            setTimeout(() => document.querySelector('input.select2-search__field').focus(), 0);
+        });
     </script>
 
     @method('scripts')
