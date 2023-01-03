@@ -4,6 +4,13 @@
 Point of Sales to manage order and purchase transactions with stock system. Powered by laravel 9 and AdminLTE template.
 
 
+## 📸 Showcase
+
+<p align="center">
+<img src="./public/assets/demo.gif" width="600"><br>
+</p>
+
+
 ## ⚡ Features
 
 - Order Transaction
@@ -44,6 +51,11 @@ php artisan serve
 ```
 
 You can now access the server at http://localhost:8000
+
+> **📃**
+> View more documentation in <a href="https://vantanto.github.io/pages/documentation/vpos_lite.html" target="_blank">here</a>.
+
+
 ## 📝 Credit
 
 #### Special Thanks
